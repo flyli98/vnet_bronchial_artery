@@ -3,16 +3,11 @@
 
 ## 1. 研究概述
 
-本项目实现了论文 *"Deep learning-based automatic segmentation of bronchial arteries and identification of culprit bleeding vessels in hemoptysis: a clinical feasibility study"* 中描述的 **3D V-Net** 分割网络。
+本项目为论文 *"Deep learning-based automatic segmentation of bronchial arteries and identification of culprit bleeding vessels in hemoptysis: a clinical feasibility study"* 中描述的 **3D V-Net** 分割网络。
 
 网络采用 **V-Net** 架构（残差卷积块 + 编解码器结构），在跳连路径中集成 **注意力机制**（Attention Gate），并采用 **两阶段级联学习策略**（Coarse → Fine）以提升细小支气管动脉的分割精度。
 
-**核心设计原则：**
-- 网络结构参数（阶段数、特征通道数、卷积核大小、步长等）硬编码于 `config/plan_config.py`
-- 数据预处理参数（强度归一化的均值/标准差、百分位裁剪范围）硬编码于 `config/plan_config.py`
-- V-Net 的残差块、注意力门、级联策略、损失函数等依据论文原文实现
 
----
 
 ## 2. 网络架构
 
@@ -245,18 +240,18 @@ Loss_cl = 1 - ClDice
 
 ## 6. 训练配置
 
-| 参数 | 值 | 来源 |
-|------|------|------|
-| 优化器 | AdamW | 论文 |
-| 初始学习率 | 1×10⁻⁴ | 论文 |
-| 学习率调度 | Cosine Annealing | 论文 |
-| 权重衰减 | 1×10⁻⁵ | 论文 |
-| 批大小 | 2 | 配置参数 |
-| 最大训练轮数 | 100 | 论文 |
-| 早停耐心值 | 15 | 论文 |
-| 梯度裁剪 | max_norm=12.0 | 实践经验 |
-| 交叉验证 | 5 折 | 论文 |
-| 深度监督 | 启用 | 实践经验 |
+| 参数 | 值 | 
+|------|------|
+| 优化器 | AdamW | 
+| 初始学习率 | 1×10⁻⁴ | 
+| 学习率调度 | Cosine Annealing |
+| 权重衰减 | 1×10⁻⁵ | 
+| 批大小 | 2 | 
+| 最大训练轮数 | 100 | 
+| 早停耐心值 | 15 | 
+| 梯度裁剪 | max_norm=12.0 | 
+| 交叉验证 | 5 折 | 
+| 深度监督 | 启用 | 
 
 ---
 
@@ -371,8 +366,5 @@ data/
     ├── case_0000.nii.gz
     ├── case_0001.nii.gz
     └── ...
-```
-
-> **注意**：所有网络结构和预处理参数已硬编码至 `config/plan_config.py`，项目运行时无需任何外部配置文件。
 
 ---
