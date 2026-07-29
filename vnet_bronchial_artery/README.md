@@ -2,7 +2,7 @@
 
 ## 1. 研究概述
 
-本项目实现了论文 *"Deep learning-based automatic segmentation of bronchial arteries and identification of culprit bleeding vessels in hemoptysis: a clinical feasibility study"* 中描述的 **3D V-Net** 分割网络。
+本项目为论文 *"Deep learning-based automatic segmentation of bronchial arteries and identification of culprit bleeding vessels in hemoptysis: a clinical feasibility study"* 中描述的 **3D V-Net** 分割网络。
 
 网络采用 **V-Net** 架构（残差卷积块 + 编解码器结构），在跳连路径中集成 **注意力机制**（Attention Gate），并采用 **两阶段级联学习策略**（Coarse → Fine）以提升细小支气管动脉的分割精度。
 
